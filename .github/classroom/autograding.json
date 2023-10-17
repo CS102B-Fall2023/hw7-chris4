@@ -48,7 +48,7 @@
       "output": "CS102",
       "comparison": "included",
       "timeout": 1,
-      "points": 5
+      "points": 6
     },
     {
       "name": "q2c",
@@ -58,7 +58,7 @@
       "output": "Cooper",
       "comparison": "included",
       "timeout": 1,
-      "points": null
+      "points": 6
     },
     {
       "name": "q3a",
@@ -68,7 +68,7 @@
       "output": "1",
       "comparison": "included",
       "timeout": 1,
-      "points": 6
+      "points": 5
     },
     {
       "name": "q3b",
