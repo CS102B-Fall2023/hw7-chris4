@@ -52,7 +52,7 @@ float getfloat(float *p)
        }
     }
         
-    *p = (*p * sign) / (d/10);
+    *p = (*p * sign) / (d);
 
     if (c != EOF){
         ungetch(c);
@@ -65,7 +65,7 @@ int main(){
         int c;
         float p;
         c = getfloat(&p);
-        printf("c = %d p = %f\n",c,  p);
+        printf("p = %f\n", p);
 
         return 0;
 }
