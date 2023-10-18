@@ -60,9 +60,10 @@ float getfloat(float *p)
 }
 
 int main(){
-        int c, p;
-        getfloat(&p);
-        printf("p = %d\n", p);
+        int c;
+        float p;
+        c = getfloat(&p);
+        printf("c = %d p = %f\n",c,  p);
 
         return 0;
 }
