@@ -1,45 +1,67 @@
 #include <stdio.h>
 #include <ctype.h>
 
-float getfloat(float *);
+int getch();
+void ungetch(int);
+
+#define BUFSIZE 100
+
+char buf[BUFSIZE];
+int bufp = 0;
+
+int getch(void)
+{
+        return (bufp > 0) ? buf[--bufp] : getchar();
+}
+
+void ungetch (int c)
+{
+    if (bufp >= BUFSIZE){
+        printf("ungetch: too many characters\n");
+    }
+    else{ 
+        buf[bufp++] = c;
+    }
+}
+
+float getfloat(float *p)
+{
+    int c, sign, r;
+    int d = 0;
+    while (isspace(c = getch()));
+
+    if (!isdigit(c) && c != EOF && c != '+' && c != '-'){
+        ungetch(c);
+        return 0;
+    }
+    sign = (c == '-') ? -1 :1;
+
+    if (c == '+' || c == '-'){
+        c = getch();
+    }
+
+    for (*p = 0; isdigit(c); c = getch()){
+       // d++;
+        *p = 10 * *p + (c - '0');
+       // if ( c = '.'){
+         //       d = r;
+       // }
+    }
+        
+    *p = (*p * sign) / d;
+
+    if (c != EOF){
+        ungetch(c);
+    }
+
+    return c;
+}
 
 int main(){
-    int c, dec, sign, a;
-    float *fpr; 
-    getfloat(fpr);
-    float x = *fpr;
-    printf("%f", x);
+        int c, p;
+        getfloat(p);
+        printf("p = %f\n", p);
 
-return 0;
+        return 0;
 }
 
-
-float getfloat(float *fpr){
-    int sign, c, a, dec;
-        while (isspace(c = getchar()));
-        if(!isdigit(c) && c != EOF && c !='+' && c != '-'){
-            getchar();
-            return 0;
-        }
-        sign = (c == '-') ? -1 : 1;
-      
-        if (c == '+' || c == '-'){
-            c = getchar();
-                }
-                
-        for (*fpr = 0, dec = 1; c != EOF; c = getchar()){
-                    int a;
-                    *fpr = 10 * *fpr + (c - '0');
-                    if (isdigit(c)){
-                        dec++;
-                    }
-                    else if(c = '.'){
-                        dec++;
-                        a == 10 ^dec;
-                        
-                    }
-                
-        }
-        *fpr = (*fpr * sign)/a;
-        return *fpr;
-}
