@@ -40,12 +40,14 @@ float getfloat(float *p)
         c = getch();
     }
 
-    for (*p = 0; isdigit(c); c = getch()){
-       // d++;
+    for (*p = 0, r = 0, d = 1; isdigit(c) || c == '.'; c = getch(), r++){
         *p = 10 * *p + (c - '0');
-       // if ( c = '.'){
-         //       d = r;
-       // }
+       if (c == '.'){
+        do{
+                d = d*10;
+                r--;
+        }while(r > 0);
+       }
     }
         
     *p = (*p * sign) / d;
@@ -59,7 +61,7 @@ float getfloat(float *p)
 
 int main(){
         int c, p;
-        getfloat(p);
+        getfloat(&p);
         printf("p = %f\n", p);
 
         return 0;
