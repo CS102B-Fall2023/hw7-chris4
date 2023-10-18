@@ -41,7 +41,9 @@ float getfloat(float *p)
     }
 
     for (*p = 0, r = 0, d = 1; isdigit(c) || c == '.'; c = getch(), r++){
+        if (isdigit(c)){
         *p = (10 * *p) + (c - '0');
+        }
        if (c == '.'){
         do{
                 d = d * 10;
@@ -50,7 +52,7 @@ float getfloat(float *p)
        }
     }
         
-    *p = (*p * sign) / d;
+    *p = (*p * sign) / (d/10);
 
     if (c != EOF){
         ungetch(c);
