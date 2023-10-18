@@ -41,10 +41,10 @@ float getfloat(float *p)
     }
 
     for (*p = 0, r = 0, d = 1; isdigit(c) || c == '.'; c = getch(), r++){
-        *p = 10 * *p + (c - '0');
+        *p = (10 * *p) + (c - '0');
        if (c == '.'){
         do{
-                d = d*10;
+                d = d * 10;
                 r--;
         }while(r > 0);
        }
@@ -62,7 +62,7 @@ float getfloat(float *p)
 int main(){
         int c, p;
         getfloat(&p);
-        printf("p = %f\n", p);
+        printf("p = %d\n", p);
 
         return 0;
 }
