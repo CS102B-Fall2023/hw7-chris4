@@ -44,13 +44,18 @@ float getfloat(float *p)
         if (isdigit(c)){
         *p = (10 * *p) + (c - '0');
         }
-       if (c == '.'){
-        do{
+       else if (c == '.'){
+        d = r;
+       }
+    }
+        
+    r = (r -d) - 1;
+    d = 1;
+    do{
                 d = d * 10;
                 r--;
         }while(r > 0);
-       }
-    }
+       
         
     *p = (*p * sign) / (d);
 
